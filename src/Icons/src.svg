@@ -1,0 +1,478 @@
+<!-- TODO:
+ - Fix Invert. Hard problem. How to tell icon to use child as mask?
+   - Can this be replaced by wrapping in a mask with a predefined viewBox?
+ - Fix .badge ~ use sizing
+ - Enable setting color attribute to override svg colors
+ - Test variable-width icons
+ - Fix IconListNumbers numbering using CSS counter in embedded style
+ - Simplify API. May require packaging in javascript to provide templating
+ - Save icon data into Icons.svg, and source from file
+-->
+
+<!-- Defs -->
+<svg class="icon-defs" viewBox="0 0 64 64">
+  <defs>
+
+    <!-- Primitive Glyhs -->
+    <!-- These should be simple, and most of the paths should be readable, provided you know the syntax. -->
+    <path id="IconPlus" class="border" d="M32,16 L32,48 M16,32 L48,32" />
+    <path id="IconBar" class="border" d="M16,32 l32,0" />
+    <path id="IconArrow" class="border" d="M16,32 l32,0 m-16,-16 l16,16 l-16,16" />
+    <path id="IconChevron" class="border" d="M26,16 l16,16, l-16,16" />
+    <path id="IconPerson" d="M32,35 C38.25,35 44,36.8 49,39.9 L49,47 C49,49 47.2,51 45,51 L19,51 C16.8,51 15,49.2 15,47 L15,39.9 C19.9,36.8 25.8,35 32,35 Z M32,11 C37.3,11 41.5,15.3 41.5,20.5 C41.5,25.7 37.2,30 32,30 C26.8,30 22.5,25.7 22.5,20.5 C22.5,15.3 26.8,11 32,11 z" />
+    <circle id="IconCircle" cx="50%" cy="50%" r="30%" />
+    <rect id="IconSquare" x="25%" y="25%" width="50%" height="50%" style="rx: var(--rx, 0)" />
+    <path id="IconDelta" d="M32,18 l16,24 l-32,0 z" />
+    <path id="IconCheckmark" class="border" d="M14,32 l12,12 l24,-24" />
+    <path id="IconOcto" class="border" d="M29,16 l-6,32
+                                          M41,16 l-6,32
+                                          M16,26 l32,0
+                                          M16,38 l32,0" />
+    <path id="IconHeart" d="M 12,24 A 8,8 0,0,1 32,24 A 8,8 0,0,1 52,24 Q 52,32 32,52 Q 12,32 12,24 z" />
+    <!-- Lock, Picture, Text, Pencil, Share, Star, Trash, Grid, etc. -->
+
+    <!-- Derived Glyphs -->
+    <!-- These should be made of groups and Use elements with transforms, styles, and classes as needed. -->
+    <use id="IconBullet" href="#IconCircle" class="fill" style="transform: scale(0.3)" />
+    <use id="IconX" href="#IconPlus" style="transform: rotate(45deg)" />
+    <use id="IconDisc" href="#IconCircle" class="border" style="transform: scale(0.3)" />
+    <use id="IconRoundSquare" href="#IconSquare" style="--rx: 15%; transform: scale(1.05)" />
+    <use id="IconDiamond" href="#IconSquare" style="transform: rotate(45deg) scale(0.9)" />
+    <use id="IconArrowRight" href="#IconArrow" />
+    <use id="IconArrowDown" href="#IconArrow" style="transform: rotate(0.25turn)" />
+    <use id="IconArrowLeft" href="#IconArrow" style="transform: rotate(0.5turn)" />
+    <use id="IconArrowUp" href="#IconArrow" style="transform: rotate(0.75turn)" />
+    <use id="IconMinus" href="#IconBar" style="transform: scale(0.7)" />
+    <use id="IconDash" href="#IconBar" style="transform: scale(1.1)" />
+    <g id="IconGrid">
+      <use href="#IconSquare" style="transform: translate(-15.625%, -15.625%) scale(0.4)" />
+      <use href="#IconSquare" style="transform: translate(15.625%, -15.625%) scale(0.4)" />
+      <use href="#IconSquare" style="transform: translate(-15.625%, 15.625%) scale(0.4)" />
+      <use href="#IconSquare" style="transform: translate(15.625%, 15.625%) scale(0.4)" />
+    </g>
+    <use id="IconGridRound" href="#IconGrid" style="--rx: 12%" />
+    <use id="IconChevronRight" href="#IconChevron" />
+    <use id="IconChevronDown" href="#IconChevron" style="transform: rotate(0.25turn)" />
+    <use id="IconChevronLeft" href="#IconChevron" style="transform: rotate(0.5turn)" />
+    <use id="IconChevronUp" href="#IconChevron" style="transform: rotate(0.75turn)" />
+    <use id="IconTriangle" href="#IconDelta" />
+    <use id="IconTriangleRight" href="#IconDelta" style="transform: rotate(0.25turn)" />
+    <use id="IconTriangleDown" href="#IconDelta" style="transform: rotate(0.5turn)" />
+    <use id="IconTriangleLeft" href="#IconDelta" style="transform: rotate(0.75turn)" />
+    <use id="IconTriangleUp" href="#IconDelta" />
+    <use id="IconCheckmarkNarrow" href="#IconCheckmark" style="transform: scaleX(0.8)" />
+    <g id="IconChevronDouble">
+      <use href="#IconChevron" transform="translate(-6)" />
+      <use href="#IconChevron" transform="translate(6)" />
+    </g>
+    <use id="IconChevronDoubleUp" href="#IconChevronDouble" />
+    <use id="IconChevronDoubleRight" href="#IconChevronDouble" style="transform: rotate(0.25turn)" />
+    <use id="IconChevronDoubleDown" href="#IconChevronDouble" style="transform: rotate(0.5turn)" />
+    <use id="IconChevronDoubleLeft" href="#IconChevronDouble" style="transform: rotate(0.75turn)" />
+    <g id="IconDragHandleVertical">
+      <use href="#IconBar" transform="translate(0 -4)" />
+      <use href="#IconBar" transform="translate(0 4)" />
+    </g>
+    <use id="IconDragHandleHorizontal" href="#IconDragHandleVertical" style="transform: rotate(0.25turn)" />
+    <g id="IconMenuBars">
+      <use href="#IconBar" transform="translate(0 -12)" />
+      <use href="#IconBar" />
+      <use href="#IconBar" transform="translate(0 12)" />
+    </g>
+    <g id="IconFilter">
+      <use href="#IconBar" style="transform: translate(0, -12px)" />
+      <use href="#IconBar" style="transform: scaleX(0.50)" />
+      <use href="#IconBar" style="transform: translate(0, 12px) scaleX(0.1)" />
+    </g>
+    <g id="IconListBullets">
+      <defs>
+        <g id="IconListBulletsItem">
+          <use href="#IconBullet" style="transform: translate(-16px, 0) scale(0.35)" />
+          <use href="#IconBar" style="transform: translate(4px, 0) scale(0.7)" />
+        </g>
+      </defs>
+      <use href="#IconListBulletsItem" transform="translate(0 -12)" />
+      <use href="#IconListBulletsItem" />
+      <use href="#IconListBulletsItem" transform="translate(0 12)" />
+    </g>
+    <g id="IconListNumbers" style="counter-reset: icon-list-number-counter">
+      <defs>
+        <style>
+          #IconListNumbersItem text:after { content: counter(icon-list-number-counter); }
+        </style>
+        <g id="IconListNumbersItem" style="counter-increment: icon-list-number-counter">
+          <text style="transform: translate(14px, 34px) scale(0.5); font-size: 100%; font-weight: 900;" text-align="right">x</text>
+          <use href="#IconBar" style="transform: translate(4px, 0) scale(0.7)" />
+        </g>
+      </defs>
+      <use href="#IconListNumbersItem" transform="translate(0 -12)" />
+      <use href="#IconListNumbersItem" />
+      <use href="#IconListNumbersItem" transform="translate(0 12)" />
+    </g>
+    <g id="IconListNumbers.box">
+       <use href="#IconSquare" style="--rx: 8%" class="container border" />
+       <use href="#IconListNumbers" />
+    </g>
+    <g id="IconListBullets.box">
+       <use href="#IconSquare" style="--rx: 8%" class="container border" />
+       <use href="#IconListBullets" />
+    </g>
+
+    <!-- Masks -->
+    <rect id="MaskBase" x="0" y="0" width="64" height="64" fill="white" />
+      
+    <mask id="MaskBadge">
+      <rect x="0%" y="0" width="100%" height="100%" fill="white" />
+      <use href="#IconCircle" class="badge mask-content" />
+    </mask>
+
+    <!-- Composite Glyphs -->
+    <g id="IconPeopleGroup">
+      <mask id="PeopleGroupMask">
+        <use href="#MaskBase" fill="white" />
+        <use href="#IconPerson" class="mask-content" transform="translate(12 12)" />
+      </mask>
+      <g style="transform: scale(0.85)">
+        <use href="#IconPerson" transform="translate(-6 -6)" mask="url(#PeopleGroupMask)" />
+        <use href="#IconPerson" transform="translate(6 6)" />
+      </g>
+    </g>
+
+    <g id="IconPeopleLinked">
+      <g style="transform: scale(1.2); transform-origin: 50% 33%;">
+        <use href="#IconPerson" style="transform: translate(0, -14px) scale(0.35)" />
+        <use href="#IconPerson" style="transform: translate(-12px, 5px) scale(0.35)" />
+        <use href="#IconPerson" style="transform: translate(12px, 5px) scale(0.35)" />
+        <path class="border" d="M32,30 l0,3 l3,1.5 M32,30, l0,3 l-3,1.5" />
+      </g>
+    </g>
+
+  </defs>
+</svg>
+
+<!-- System in use -->
+
+<h3>Primitive Glyphs: Circle, Person, Plus, etc.</h3>
+<p>Pure glyphs serve as the basis for the overall style of the icon set. These should be as simple as possible.</p>
+<p>Some glyphs, like the Square, have special variables to allow derived glyphs to modify the inner shape. The Square provides an "--rx" variable so the RoundedSquare glyph can modify its corner radius.</p>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconSquare" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconBar" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconArrow" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPerson" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPlus" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevron" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDelta" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCheckmark" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconHeart" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconOcto" />
+</svg>
+
+<h3>Derived Glyphs: Rounded square, directional arrows, etc.</h3>
+<p>Derived glyphs inherit from one or several primitive glyphs, and apply transforms or redifine variables to create a new glyph. Most are simple rotations. Rotated derived glyhs are preferable to classes or explicit transformations because some rotations may require point modifications, and to reduce complexity during use.</p>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconRoundSquare" class="border" />
+</svg>
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDiamond" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconX" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconGrid" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconGridRound" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconBullet" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDisc" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconArrowRight" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconArrowDown" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconArrowLeft" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconArrowUp" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconMinus" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDash" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronRight" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronDown" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronLeft" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronUp" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconTriangleRight" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconTriangleDown" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconTriangleLeft" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconTriangleUp" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCheckmarkNarrow" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronDoubleRight" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronDoubleDown" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronDoubleLeft" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconChevronDoubleUp" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDragHandleVertical" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconDragHandleHorizontal" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconMenuBars" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconFilter" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconListBullets" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconListNumbers" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconListBullets.box" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconListNumbers.box" />
+</svg>
+
+
+<h3>Composite Glyphs</h3>
+<p>People: 2 instances of Person, plus a mask. PeopleLinked: 3 instances of Person, plus a line.</p>
+<p>Masks are instances of a primitive as well, so they remain dynamic, and linked to the primitive shape.</p>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPeopleGroup" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPeopleGroup" class="fill" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPeopleLinked" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconPeopleLinked" class="fill" />
+</svg>
+
+<h3>Compositions</h3>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="border container" />
+  <use href="#IconPerson" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="border container" />
+  <use href="#IconPeopleGroup" class="fill" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="fill container" />
+  <use href="#IconPeopleLinked" class="border" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="fill container" />
+  <use href="#IconPeopleLinked" class="fill" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+  <use href="#IconCircle" class="fill container" />
+  <use href="#IconPlus" class="border" style="--stroke-width: 2.5" />
+</svg>
+
+<svg class="icon" viewBox="0 0 64 64">
+
+  <g class="mask-badge">
+    <use href="#IconCircle" class="border container" />
+    <use href="#IconPerson" class="fill" />
+  </g>
+
+  <g class="badge">
+    <use href="#IconCircle" class="fill container" />
+    <use href="#IconPlus" class="border invert" style="--stroke-width: 2;" />
+  </g>
+</svg>
+
+<h3>Styling an Icon</h3>
+
+<p>Set the Color attribute on an icon to redefine the primary color</p>
+
+    <svg class="icon" viewBox="0 0 64 64" color="blue">
+      <use href="#IconCircle" class="border container" />
+      <use href="#IconPeopleGroup" class="fill" />
+    </svg>
+
+    <svg class="icon" viewBox="0 0 64 64" color="blue">
+      <use href="#IconCircle" class="fill container" />
+      <use href="#IconPeopleGroup" class="fill" />
+    </svg>
+
+<h3>Badging an Icon</h3>
+
+<ol>
+
+  <li>
+    <p>Create your icon</p>
+    <svg class="icon" viewBox="0 0 64 64">
+      <use href="#IconCircle" class="border container" />
+      <use href="#IconPeopleGroup" class="fill" />
+    </svg>
+  </li>
+
+  <li>
+    <p>Wrap the contents in a &lt;g&gt; element with the `.badge-mask` class</p>
+    <svg class="icon" viewBox="0 0 64 64">
+      <g mask="url(#MaskBadge)">
+        <use href="#IconCircle" class="border container" />
+        <use href="#IconPeopleGroup" class="fill" />
+      </g>
+    </svg>
+  </li>
+  
+  <li>
+    <p>Create your contents after the masked content</p>
+    <svg class="icon" viewBox="0 0 64 64">
+
+      <mask id="MaskBadge">
+        <rect x="0%" y="0" width="100%" height="100%" fill="white" />
+        <use href="#IconCircle" class="badge mask-content" />
+      </mask>
+
+      <g class="mask-badge">
+        <use href="#IconCircle" class="border container" />
+        <use href="#IconPeopleGroup" class="fill" />
+      </g>
+      
+      <use href="#IconCircle" class="fill container" />
+      <use href="#IconPlus" class="border invert" style="--stroke-width: 2;" />
+    </svg>
+  </li>
+  
+  <li>
+    <p>Wrap badge contents in a &lt;g&gt; element with the `.badge` class</p>
+    <svg class="icon" viewBox="0 0 64 64">
+
+      <mask id="MaskBadge">
+        <rect x="0%" y="0" width="100%" height="100%" fill="white" />
+        <use href="#IconCircle" class="badge mask-content" />
+      </mask>
+
+      <g class="mask-badge">
+        <use href="#IconCircle" class="border container" />
+        <use href="#IconPeopleGroup" class="fill" />
+      </g>
+      
+      <g class="badge">
+        <use href="#IconCircle" class="fill container" />
+        <use href="#IconPlus" class="border invert" style="--stroke-width: 2;" />
+      </g>
+    </svg>
+  </li>
+
+</ol>

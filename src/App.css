@@ -1,0 +1,179 @@
+
+html {
+  background: #ddd;
+  color: #333;
+}
+
+html {
+  background: #ddd;
+  --accent1: blue;
+  --accent2: turquoise;
+  --color1: white;
+  --color2: black;
+  --foreground: var(--color2);
+}
+
+svg {
+  overflow: visible;
+  --stroke-width: 1.5;
+  --container-element-scale: 1.35;
+  --contained-element-scale: calc(1 / var(--container-element-scale));
+  --badge-scale: 0.5;
+  --badge-mask-scale: calc(1 / var(--badge-scale));
+  --badge-offset: -25%, 25%;
+  --size: 64px;
+}
+
+svg.icon-defs {
+  width: 0;
+  height: 0;
+  z-index: -9999;
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+}
+
+svg .mask-content {
+  --_scale: var(--scale, 1);
+  --base-stroke-size: calc(var(--stroke-width, 2) * 4 * 1px);
+  --scaled-stroke-size: calc(var(--base-stroke-size) * (1 / var(--_scale, 1)));
+  fill: black;
+  stroke: black;
+  stroke-width: var(--scaled-stroke-size);
+  transform: scale(--mask-scale);
+}
+
+
+svg .mask-badge {
+  /* This could be improved by adding an offset using the viewBox attribute */
+  mask: url(#MaskBadge);
+}
+
+svg .badge .mask-content,
+svg .badge.mask-content {
+  transform: scale(--badge-mask-scale);
+}
+svg .container ~ .mask-content {
+/*   transform: scale(--container-element-scale); */
+}
+
+svg.icon {
+  height: var(--size);
+  width: var(--size);
+}
+
+svg .fade {
+  opacity: 0.15;
+}
+
+svg * {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: 50% 50%;
+}
+
+/* TODO: Fix this attribute */
+svg[color],
+svg [color],
+svg [color].border,
+svg [color].fill,
+svg [color].fill.border {
+  --foreground: currentColor;
+}
+
+svg .border {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: var(--stroke-width);
+}
+
+svg .fill {
+  fill: var(--foreground, currentColor);
+  stroke: var(--foreground, currentColor);
+  stroke-width: calc(var(--stroke-width) / 2);
+}
+
+svg .fill.border {
+  fill: var(--foreground, currentColor);
+  stroke-width: var(--stroke-width);
+}
+
+/* Explicit and Implicit Color Inversion */
+svg .invert,
+svg .fill.container ~ .border,
+svg .fill.container ~ .fill {
+  --foreground: var(--color1);
+}
+
+/* Container Sizing */
+svg .container {
+/* Containers should scale based on stroke width
+  Larger stroke width, larger container (and smaller contained object) */
+  transform: scale(var(--container-element-scale));
+}
+svg .container ~ use,
+svg .container ~ g use {
+  transform: scale(var(--contained-element-scale));
+}
+
+/* Badge Sizing */
+svg .badge {
+  transform:
+    translate(var(--badge-offset))
+    scale(var(--badge-scale))
+}
+svg .badge.mask-content {
+  
+}
+
+
+/* TODO: Hook up, build test case */
+svg .variable-width {
+  margin-inline-start: var(--margin-start);
+  margin-inline-end: var(--margin-end);
+}
+
+/* Demo Styles */
+html {
+  font-family: system-ui, Helvetica;
+  padding: 2rem;
+  line-height: 1.4;
+}
+
+svg {
+  border: 2px solid rgb(0 0 0 / 0.08);
+  background: #fff;
+  background-clip: content-box;
+  border-radius: 8px;
+  margin: 4px;
+}
+
+h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+h3 + svg,
+p + svg {
+  margin-top: 0.5rem;
+}
+
+ol {
+  padding-left: 1.25em;
+}
+
+ol li {
+  margin: 0 0 1rem;
+}
+
+
+* {
+  box-sizing: border-box;
+}
