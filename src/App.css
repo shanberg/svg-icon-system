@@ -1,11 +1,6 @@
 
 html {
   background: #ddd;
-  color: #333;
-}
-
-html {
-  background: #ddd;
   --accent1: blue;
   --accent2: turquoise;
   --color1: white;
@@ -15,7 +10,7 @@ html {
 
 svg {
   overflow: visible;
-  --stroke-width: 1.5;
+  /* --stroke-width: var(--stroke-width, 1.5); */
   --container-element-scale: 1.35;
   --contained-element-scale: calc(1 / var(--container-element-scale));
   --badge-scale: 0.5;
@@ -45,7 +40,7 @@ svg .mask-content {
 
 
 svg .mask-badge {
-  /* This could be improved by adding an offset using the viewBox attribute */
+  /* TODO: This could be improved by adding an offset using the viewBox attribute */
   mask: url(#MaskBadge);
 }
 
@@ -91,7 +86,8 @@ svg .border {
 svg .fill {
   fill: var(--foreground, currentColor);
   stroke: var(--foreground, currentColor);
-  stroke-width: calc(var(--stroke-width) / 2);
+  stroke-width: 0;
+  /* stroke-width: calc(var(--stroke-width) / 2); */
 }
 
 svg .fill.border {
@@ -101,8 +97,8 @@ svg .fill.border {
 
 /* Explicit and Implicit Color Inversion */
 svg .invert,
-svg .fill.container ~ .border,
-svg .fill.container ~ .fill {
+svg .fill.container ~ .border:not(.container),
+svg .fill.container ~ .fill:not(.container) {
   --foreground: var(--color1);
 }
 
@@ -112,8 +108,8 @@ svg .container {
   Larger stroke width, larger container (and smaller contained object) */
   transform: scale(var(--container-element-scale));
 }
-svg .container ~ use,
-svg .container ~ g use {
+svg .container ~ use:not(.container),
+svg .container ~ g:not(.container) use:not(.container) {
   transform: scale(var(--contained-element-scale));
 }
 
@@ -172,7 +168,6 @@ ol {
 ol li {
   margin: 0 0 1rem;
 }
-
 
 * {
   box-sizing: border-box;

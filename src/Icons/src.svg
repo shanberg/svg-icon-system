@@ -22,6 +22,7 @@
     <path id="IconPerson" d="M32,35 C38.25,35 44,36.8 49,39.9 L49,47 C49,49 47.2,51 45,51 L19,51 C16.8,51 15,49.2 15,47 L15,39.9 C19.9,36.8 25.8,35 32,35 Z M32,11 C37.3,11 41.5,15.3 41.5,20.5 C41.5,25.7 37.2,30 32,30 C26.8,30 22.5,25.7 22.5,20.5 C22.5,15.3 26.8,11 32,11 z" />
     <circle id="IconCircle" cx="50%" cy="50%" r="30%" />
     <rect id="IconSquare" x="25%" y="25%" width="50%" height="50%" style="rx: var(--rx, 0)" />
+    <rect id="IconSquare" x="25%" y="25%" width="50%" height="50%" style="rx: var(--rx, 0)" />
     <path id="IconDelta" d="M32,18 l16,24 l-32,0 z" />
     <path id="IconCheckmark" class="border" d="M14,32 l12,12 l24,-24" />
     <path id="IconOcto" class="border" d="M29,16 l-6,32
@@ -56,19 +57,19 @@
     <use id="IconChevronLeft" href="#IconChevron" style="transform: rotate(0.5turn)" />
     <use id="IconChevronUp" href="#IconChevron" style="transform: rotate(0.75turn)" />
     <use id="IconTriangle" href="#IconDelta" />
-    <use id="IconTriangleRight" href="#IconDelta" style="transform: rotate(0.25turn)" />
-    <use id="IconTriangleDown" href="#IconDelta" style="transform: rotate(0.5turn)" />
-    <use id="IconTriangleLeft" href="#IconDelta" style="transform: rotate(0.75turn)" />
-    <use id="IconTriangleUp" href="#IconDelta" />
+    <use id="Icontriangle.right" href="#IconDelta" style="transform: rotate(0.25turn)" />
+    <use id="Icontriangle.down" href="#IconDelta" style="transform: rotate(0.5turn)" />
+    <use id="Icontriangle.left" href="#IconDelta" style="transform: rotate(0.75turn)" />
+    <use id="Icontriangle.up" href="#IconDelta" />
     <use id="IconCheckmarkNarrow" href="#IconCheckmark" style="transform: scaleX(0.8)" />
-    <g id="IconChevronDouble">
+    <g id="Iconchevron.2">
       <use href="#IconChevron" transform="translate(-6)" />
       <use href="#IconChevron" transform="translate(6)" />
     </g>
-    <use id="IconChevronDoubleUp" href="#IconChevronDouble" />
-    <use id="IconChevronDoubleRight" href="#IconChevronDouble" style="transform: rotate(0.25turn)" />
-    <use id="IconChevronDoubleDown" href="#IconChevronDouble" style="transform: rotate(0.5turn)" />
-    <use id="IconChevronDoubleLeft" href="#IconChevronDouble" style="transform: rotate(0.75turn)" />
+    <use id="Iconchevron.2.up" href="#Iconchevron.2" />
+    <use id="Iconchevron.2.right" href="#Iconchevron.2" style="transform: rotate(0.25turn)" />
+    <use id="Iconchevron.2.down" href="#Iconchevron.2" style="transform: rotate(0.5turn)" />
+    <use id="Iconchevron.2.left" href="#Iconchevron.2" style="transform: rotate(0.75turn)" />
     <g id="IconDragHandleVertical">
       <use href="#IconBar" transform="translate(0 -4)" />
       <use href="#IconBar" transform="translate(0 4)" />
@@ -84,38 +85,38 @@
       <use href="#IconBar" style="transform: scaleX(0.50)" />
       <use href="#IconBar" style="transform: translate(0, 12px) scaleX(0.1)" />
     </g>
-    <g id="IconListBullets">
+    <g id="Iconlist.bullet">
       <defs>
-        <g id="IconListBulletsItem">
+        <g id="Iconlist.bullet.item">
           <use href="#IconBullet" style="transform: translate(-16px, 0) scale(0.35)" />
           <use href="#IconBar" style="transform: translate(4px, 0) scale(0.7)" />
         </g>
       </defs>
-      <use href="#IconListBulletsItem" transform="translate(0 -12)" />
-      <use href="#IconListBulletsItem" />
-      <use href="#IconListBulletsItem" transform="translate(0 12)" />
+      <use href="#Iconlist.bullet.item" transform="translate(0 -12)" />
+      <use href="#Iconlist.bullet.item" />
+      <use href="#Iconlist.bullet.item" transform="translate(0 12)" />
     </g>
     <g id="IconListNumbers" style="counter-reset: icon-list-number-counter">
       <defs>
         <style>
-          #IconListNumbersItem text:after { content: counter(icon-list-number-counter); }
+          #IconListNumbers.item text:after { content: counter(icon-list-number-counter); }
         </style>
-        <g id="IconListNumbersItem" style="counter-increment: icon-list-number-counter">
+        <g id="IconListNumbers.item" style="counter-increment: icon-list-number-counter">
           <text style="transform: translate(14px, 34px) scale(0.5); font-size: 100%; font-weight: 900;" text-align="right">x</text>
           <use href="#IconBar" style="transform: translate(4px, 0) scale(0.7)" />
         </g>
       </defs>
-      <use href="#IconListNumbersItem" transform="translate(0 -12)" />
-      <use href="#IconListNumbersItem" />
-      <use href="#IconListNumbersItem" transform="translate(0 12)" />
+      <use href="#IconListNumbers.item" transform="translate(0 -12)" />
+      <use href="#IconListNumbers.item" />
+      <use href="#IconListNumbers.item" transform="translate(0 12)" />
     </g>
     <g id="IconListNumbers.box">
        <use href="#IconSquare" style="--rx: 8%" class="container border" />
        <use href="#IconListNumbers" />
     </g>
-    <g id="IconListBullets.box">
+    <g id="Iconlist.bullet.box">
        <use href="#IconSquare" style="--rx: 8%" class="container border" />
-       <use href="#IconListBullets" />
+       <use href="#Iconlist.bullet" />
     </g>
 
     <!-- Masks -->
@@ -127,18 +128,18 @@
     </mask>
 
     <!-- Composite Glyphs -->
-    <g id="IconPeopleGroup">
-      <mask id="PeopleGroupMask">
+    <g id="Iconperson.2">
+      <mask id="person.2Mask">
         <use href="#MaskBase" fill="white" />
         <use href="#IconPerson" class="mask-content" transform="translate(12 12)" />
       </mask>
       <g style="transform: scale(0.85)">
-        <use href="#IconPerson" transform="translate(-6 -6)" mask="url(#PeopleGroupMask)" />
+        <use href="#IconPerson" transform="translate(-6 -6)" mask="url(#person.2Mask)" />
         <use href="#IconPerson" transform="translate(6 6)" />
       </g>
     </g>
 
-    <g id="IconPeopleLinked">
+    <g id="Iconperson.3.link">
       <g style="transform: scale(1.2); transform-origin: 50% 33%;">
         <use href="#IconPerson" style="transform: translate(0, -14px) scale(0.35)" />
         <use href="#IconPerson" style="transform: translate(-12px, 5px) scale(0.35)" />
@@ -271,19 +272,19 @@
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconTriangleRight" class="border" />
+  <use href="#Icontriangle.right" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconTriangleDown" class="border" />
+  <use href="#Icontriangle.down" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconTriangleLeft" class="border" />
+  <use href="#Icontriangle.left" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconTriangleUp" class="border" />
+  <use href="#Icontriangle.up" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
@@ -291,19 +292,19 @@
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconChevronDoubleRight" />
+  <use href="#Iconchevron.2.right" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconChevronDoubleDown" />
+  <use href="#Iconchevron.2.down" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconChevronDoubleLeft" />
+  <use href="#Iconchevron.2.left" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconChevronDoubleUp" />
+  <use href="#Iconchevron.2.up" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
@@ -323,7 +324,7 @@
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconListBullets" />
+  <use href="#Iconlist.bullet" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
@@ -331,7 +332,7 @@
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconListBullets.box" />
+  <use href="#Iconlist.bullet.box" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
@@ -340,23 +341,23 @@
 
 
 <h3>Composite Glyphs</h3>
-<p>People: 2 instances of Person, plus a mask. PeopleLinked: 3 instances of Person, plus a line.</p>
+<p>People: 2 instances of Person, plus a mask. person.3.link: 3 instances of Person, plus a line.</p>
 <p>Masks are instances of a primitive as well, so they remain dynamic, and linked to the primitive shape.</p>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconPeopleGroup" class="border" />
+  <use href="#Iconperson.2" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconPeopleGroup" class="fill" />
+  <use href="#Iconperson.2" class="fill" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconPeopleLinked" class="border" />
+  <use href="#Iconperson.3.link" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
-  <use href="#IconPeopleLinked" class="fill" />
+  <use href="#Iconperson.3.link" class="fill" />
 </svg>
 
 <h3>Compositions</h3>
@@ -368,17 +369,17 @@
 
 <svg class="icon" viewBox="0 0 64 64">
   <use href="#IconCircle" class="border container" />
-  <use href="#IconPeopleGroup" class="fill" />
+  <use href="#Iconperson.2" class="fill" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
   <use href="#IconCircle" class="fill container" />
-  <use href="#IconPeopleLinked" class="border" />
+  <use href="#Iconperson.3.link" class="border" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
   <use href="#IconCircle" class="fill container" />
-  <use href="#IconPeopleLinked" class="fill" />
+  <use href="#Iconperson.3.link" class="fill" />
 </svg>
 
 <svg class="icon" viewBox="0 0 64 64">
@@ -405,12 +406,12 @@
 
     <svg class="icon" viewBox="0 0 64 64" color="blue">
       <use href="#IconCircle" class="border container" />
-      <use href="#IconPeopleGroup" class="fill" />
+      <use href="#Iconperson.2" class="fill" />
     </svg>
 
     <svg class="icon" viewBox="0 0 64 64" color="blue">
       <use href="#IconCircle" class="fill container" />
-      <use href="#IconPeopleGroup" class="fill" />
+      <use href="#Iconperson.2" class="fill" />
     </svg>
 
 <h3>Badging an Icon</h3>
@@ -421,7 +422,7 @@
     <p>Create your icon</p>
     <svg class="icon" viewBox="0 0 64 64">
       <use href="#IconCircle" class="border container" />
-      <use href="#IconPeopleGroup" class="fill" />
+      <use href="#Iconperson.2" class="fill" />
     </svg>
   </li>
 
@@ -430,7 +431,7 @@
     <svg class="icon" viewBox="0 0 64 64">
       <g mask="url(#MaskBadge)">
         <use href="#IconCircle" class="border container" />
-        <use href="#IconPeopleGroup" class="fill" />
+        <use href="#Iconperson.2" class="fill" />
       </g>
     </svg>
   </li>
@@ -446,7 +447,7 @@
 
       <g class="mask-badge">
         <use href="#IconCircle" class="border container" />
-        <use href="#IconPeopleGroup" class="fill" />
+        <use href="#Iconperson.2" class="fill" />
       </g>
       
       <use href="#IconCircle" class="fill container" />
@@ -465,7 +466,7 @@
 
       <g class="mask-badge">
         <use href="#IconCircle" class="border container" />
-        <use href="#IconPeopleGroup" class="fill" />
+        <use href="#Iconperson.2" class="fill" />
       </g>
       
       <g class="badge">

@@ -8,7 +8,7 @@ import * as Glyphs from './glyphs';
  - Enable setting color attribute to override svg colors
  - Test variable-width icons
  - Fix IconListNumbers numbering using CSS counter in embedded style
- - Simplify API. May require packaging in javascript to provide templating
+ - Simplify API_ May require packaging in javascript to provide templating
  - Save icon data into Icons.svg, and source from file
  */
 
@@ -24,34 +24,44 @@ const RenderedGlyphs = { __html: Object.keys(Glyphs).map(glyph => (Glyphs[glyph]
 
 const Icon = props => (<svg className="icon" viewBox={viewBox} {...props}>{props.children}</svg>);
 
+const IconDefs = props => (<svg className="icon-defs" viewBox={viewBox} {...props}>{props.children}</svg>);
+
 function Icons() {
+
   return (
     <>
-      <svg className="icon-defs" viewBox="0 0 64 64" style={{ visibility: "hidden" }}>
+      <IconDefs className="icon-defs" viewBox="0 0 64 64">
         <defs dangerouslySetInnerHTML={RenderedGlyphs} />
         <defs>
           <mask id="MaskBadge">
             <rect x="0%" y="0" width="100%" height="100%" fill="white" />
-            <use href="#i.circle" className="badge mask-content" />
+            <use href="#i_circle" className="badge mask-content" />
+          </mask>
+
+          <mask id="test-mask">
+            <rect x="0%" y="0%" width="100%" height="100%" fill="black" />
+            <circle cx="50%" cy="50%" r="40%" fill="white" />
           </mask>
         </defs>
-      </svg>
+
+      </IconDefs>
 
       <div>
         <h3>Pure glyphs</h3>
         <p>Pure glyphs serve as the basis for the overall style of the icon set. These should be as simple as possible.</p>
         <p>Some glyphs, like the Square, have special variables to allow derived glyphs to modify the inner shape. The Square provides an "--rx" variable so the RoundedSquare glyph can modify its corner radius.</p>
 
-        {PureGlyphs.map(glyph => (<Icon><use href={'#i.' + glyph} className="border" /></Icon>))}
+        {PureGlyphs.map(glyph => (<Icon key={glyph}><use href={'#i_' + glyph} className="border" /></Icon>))}
       </div>
 
       <hr />
 
       <div>
         <h3>Composite glyphs</h3>
-        <p>Derived glyphs inherit from one or several primitive glyphs, and apply transforms or redifine variables to create a new glyph. Most are simple rotations. Rotated derived glyhs are preferable to classes or explicit transformations because some rotations may require point modifications, and to reduce complexity during use.</p>
+        <p>Derived glyphs inherit from one or several primitive glyphs, and apply transforms or redefine variables to create a new glyph. Most are simple rotations.</p>
+        <p>Non-DRY rotations and transformations are preferable to utility because some rotations may require unique modifications that don't fit the obvious pattern, and to reduce the already-large number of ways classes can be used.</p>
 
-        {ImpureGlyphs.map(glyph => (<Icon><use href={'#i.' + glyph} className="border" /></Icon>))}
+        {ImpureGlyphs.map(glyph => (<Icon key={glyph}><use href={'#i_' + glyph} className="border" /></Icon>))}
       </div>
 
       <hr />
@@ -59,69 +69,117 @@ function Icons() {
       <div>
 
         <h3>Compositions</h3>
-        <p>People: 2 instances of Person, plus a mask. PeopleLinked: 3 instances of Person, plus a line.</p>
+        <p>People: 2 instances of Person, plus a mask. person_3_link: 3 instances of Person, plus a line.</p>
         <p>Masks are instances of a primitive as well, so they remain dynamic, and linked to the primitive shape.</p>
 
         <Icon>
-          <use href="#i.circle" className="border container" />
-          <use href="#i.peopleGroup" className="fill" />
+          <use href="#i_circle" className="border container" />
+          <use href="#i_person_2" className="fill" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="fill container" />
-          <use href="#i.peopleGroup" className="fill" />
+          <use href="#i_circle" className="fill container" />
+          <use href="#i_person_2" className="fill" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="border container" />
-          <use href="#i.person" className="border" />
+          <use href="#i_circle" className="border container" />
+          <use href="#i_person" className="border" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="border container" />
-          <use href="#i.peopleGroup" className="fill" />
+          <use href="#i_circle" className="border container" />
+          <use href="#i_person_2" className="fill" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="fill container" />
-          <use href="#i.peopleLinked" className="border" />
+          <use href="#i_circle" className="fill container" />
+          <use href="#i_person_3_link" className="border" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="fill container" />
-          <use href="#i.peopleLinked" className="fill" />
+          <use href="#i_circle" className="fill container" />
+          <use href="#i_person_3_link" className="fill" />
         </Icon>
 
         <Icon>
-          <use href="#i.circle" className="fill container" />
-          <use href="#i.plus" className="border" style={{ '--stroke-width': 2.5 }} />
+          <use href="#i_circle" className="fill container" />
+          <use href="#i_plus" className="border" style={{ '--stroke-width': 2.5 }} />
         </Icon>
 
         <Icon>
           <g className="mask-badge">
-            <use href="#i.circle" className="border container" />
-            <use href="#i.person" className="fill" />
+            <use href="#i_circle" className="border container" />
+            <use href="#i_person" className="fill" />
           </g>
           <g className="badge">
-            <use href="#i.circle" className="fill container" />
-            <use href="#i.plus" className="border invert" style={{ "--stroke-width": 2 }} />
+            <use href="#i_circle" className="fill container" />
+            <use href="#i_plus" className="border invert" style={{ "--stroke-width": 2 }} />
           </g>
         </Icon>
-
 
         <h3>Styling an Icon</h3>
 
         <p>Set the Color attribute on an icon to redefine the primary color</p>
 
         <Icon color="blue">
-          <use href="#i.circle" className="border container" />
-          <use href="#i.peopleGroup" className="fill" />
+          <use href="#i_circle" className="border container" />
+          <use href="#i_person_2" className="fill" />
         </Icon>
 
         <Icon color="blue">
-          <use href="#i.circle" className="fill container" />
-          <use href="#i.peopleGroup" className="fill" />
+          <use href="#i_circle" className="fill container" />
+          <use href="#i_person_2" className="fill" />
         </Icon>
+
+        <h3>Containers</h3>
+
+        <Icon>
+          <use href="#i_circle" className="border container" />
+          <use href="#i_square" className="border container" />
+          {/* <use href="#i_square_round" className="border container" /> */}
+          <use href="#i_rectangle" className="border container" />
+          <use href="#i_rectangle_round" className="border container" />
+          <use href="#i_delta" className="border container" />
+          {/* <use href="#i_hexagon" className="border container" /> */}
+        </Icon>
+
+        <div style={{ "--stroke-width": "3px" }}>
+          <Icon>
+            <use href="#i_circle" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_square" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_square_round" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_rectangle" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_rectangle_round" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_delta" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+
+          <Icon>
+            <use href="#i_hexagon" className="fill container" />
+            <use href="#i_arrow_forward" className="invert" />
+          </Icon>
+        </div>
 
         <h3>Badging an Icon</h3>
 
@@ -130,8 +188,8 @@ function Icons() {
           <li>
             <p>Create your icon</p>
             <Icon>
-              <use href="#i.circle" className="border container" />
-              <use href="#i.peopleGroup" className="fill" />
+              <use href="#i_circle" className="border container" />
+              <use href="#i_person_2" className="fill" />
             </Icon>
           </li>
 
@@ -139,8 +197,8 @@ function Icons() {
             <p>Wrap the contents in a &lt;g&gt; element with the `.badge-mask` class</p>
             <Icon>
               <g mask="url(#MaskBadge)">
-                <use href="#i.circle" className="border container" />
-                <use href="#i.peopleGroup" className="fill" />
+                <use href="#i_circle" className="border container" />
+                <use href="#i_person_2" className="fill" />
               </g>
             </Icon>
           </li>
@@ -149,12 +207,13 @@ function Icons() {
             <p>Create your contents after the masked content</p>
             <Icon>
               <g className="mask-badge">
-                <use href="#i.circle" className="border container" />
-                <use href="#i.peopleGroup" className="fill" />
+                <use href="#i_circle" className="border container" />
+                <use href="#i_person_2" className="fill" />
               </g>
-              <use href="#i.circle" className="fill container" />
-              <use href="#i.plus" className="border invert" style={{ '--stroke-width': 2 }} />
+              <use href="#i_circle" className="fill container" />
+              <use href="#i_plus" className="border invert" style={{ '--stroke-width': 2 }} />
             </Icon>
+
           </li>
 
           <li>
@@ -163,17 +222,17 @@ function Icons() {
 
               <mask id="MaskBadge">
                 <rect x="0%" y="0" width="100%" height="100%" fill="white" />
-                <use href="#i.circle" className="badge mask-content" />
+                <use href="#i_circle" className="badge mask-content" />
               </mask>
 
               <g className="mask-badge">
-                <use href="#i.circle" className="border container" />
-                <use href="#i.peopleGroup" className="fill" />
+                <use href="#i_circle" className="border container" />
+                <use href="#i_person_2" className="fill" />
               </g>
 
               <g className="badge">
-                <use href="#i.circle" className="fill container" />
-                <use href="#i.plus" className="border invert" style={{ '--stroke-width': 2 }} />
+                <use href="#i_circle" className="fill container" />
+                <use href="#i_plus" className="border invert" style={{ '--stroke-width': 2 }} />
               </g>
             </Icon>
           </li>
