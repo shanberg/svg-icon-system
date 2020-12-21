@@ -1,20 +1,20 @@
-export const plus = `<path id="i_plus" class="border" d="M32,16 L32,48 M16,32 L48,32" />`;
 export const bar = `<path id="i_bar" class="border" d="M16,32 l32,0" />`;
-export const arrow = `<path id="i_arrow" class="border" d="M16,32 l32,0 m-16,-16 l16,16 l-16,16" />`;
 export const chevron = `<path id="i_chevron" class="border" d="M26,16 l16,16, l-16,16" />`;
-export const person = `<path id="i_person" d="M32,35 C38.25,35 44,36.8 49,39.9 L49,47 C49,49 47.2,51 45,51 L19,51 C16.8,51 15,49.2 15,47 L15,39.9 C19.9,36.8 25.8,35 32,35 Z M32,11 C37.3,11 41.5,15.3 41.5,20.5 C41.5,25.7 37.2,30 32,30 C26.8,30 22.5,25.7 22.5,20.5 C22.5,15.3 26.8,11 32,11 z" />`;
+export const checkmark = `<path id="i_checkmark" class="border" d="M14,32 l12,12 l24,-24" />`;
+export const plus = `<path id="i_plus" class="border" d="M32,16 L32,48 M16,32 L48,32" />`;
+export const arrow = `<path id="i_arrow" class="border" d="M16,32 l32,0 m-16,-16 l16,16 l-16,16" />`;
+export const octo = `<path id="i_octo" class="border" d="M29,16 l-6,32 M41,16 l-6,32 M16,26 l32,0 M16,38 l32,0" />`;
 export const circle = `<circle id="i_circle" cx="50%" cy="50%" r="28%" />`;
+export const delta = `<path id="i_delta" d="M32,10 l20,36.5 l-40,0 z" />`;
 export const square = `<rect id="i_square" x="25%" y="25%" width="50%" height="50%" style="rx: var(--rx, 0)" />`;
 export const rectangle = `<rect id="i_rectangle" x="20%" y="27%" width="60%" height="46%" style="rx: var(--rx, 0)" />`;
 export const hexagon = `<path id="i_hexagon"d="M32, 14 l16, 10 l0, 16 l -16, 10 l-16,-10 l0,-16 z" />`;
-export const delta = `<path id="i_delta" d="
-M32,10
-l20,36.5
-l-40,0
-z" />`;
-export const checkmark = `<path id="i_checkmark" class="border" d="M14,32 l12,12 l24,-24" />`;
-export const octo = `<path id="i_octo" class="border" d="M29,16 l-6,32 M41,16 l-6,32 M16,26 l32,0 M16,38 l32,0" />`;
+// hexagon_round
+// delta_round
 export const heart = `<path id="i_heart" d="M 12,24 A 8,8 0,0,1 32,24 A 8,8 0,0,1 52,24 Q 52,32 32,50 Q 12,32 12,24 z" />`;
+export const cloud = `<path id="i_cloud" d="M17,46 L17,46 C12.5,45.75 9,42 9,37.5 C9,33 13,29 17.5,29 C17.5,29 17.75,29 18,29 C19.5,26.5 21.25,24.5 24,23.5 C26,19.25 30.5,16 35.5,16 C42.5,16 48,21.5 48,28.5 C48,28.75 48,28 48,29 C52,30 55,33 55,37.5 C55,42.1944204 51.1944204,46 46.5,46 C46,46 46,46 46,46 L46,46 L17,46 Z"/>`
+export const person = `<path id="i_person" d="M32,35 C38.25,35 44,36.8 49,39.9 L49,47 C49,49 47.2,51 45,51 L19,51 C16.8,51 15,49.2 15,47 L15,39.9 C19.9,36.8 25.8,35 32,35 Z M32,11 C37.3,11 41.5,15.3 41.5,20.5 C41.5,25.7 37.2,30 32,30 C26.8,30 22.5,25.7 22.5,20.5 C22.5,15.3 26.8,11 32,11 z" />`;
+// 
 export const bullet = `<use id="i_bullet" href="#i_circle" class="fill" style="transform: scale(0.3)" />`;
 export const disc = `<use id="i_disc" href="#i_circle" class="border" style="transform: scale(0.3)" />`;
 export const x = `<use id="i_x" href="#i_plus" style="transform: rotate(45deg)" />`;
@@ -25,6 +25,7 @@ export const arrow_right = `<use id="i_arrow_right" href="#i_arrow" />`;
 export const arrow_down = `<use id="i_arrow_down" href="#i_arrow" style="transform: rotate(0.25turn)" />`;
 export const arrow_left = `<use id="i_arrow_left" href="#i_arrow" style="transform: rotate(0.5turn)" />`;
 export const arrow_up = `<use id="i_arrow_up" href="#i_arrow" style="transform: rotate(0.75turn)" />`;
+export const arrow_backward = `<use id="i_arrow_backward" href="#i_arrow" style="transform: rotate(180deg)" />`;
 export const arrow_forward = `<use id="i_arrow_forward" href="#i_arrow" />`;
 export const minus = `<use id="i_minus" href="#i_bar" style="transform: scale(0.7)" />`;
 export const dash = `<use id="i_dash" href="#i_bar" style="transform: scale(1.1)" />`;
